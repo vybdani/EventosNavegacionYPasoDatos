@@ -11,8 +11,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import java.util.Optional;
 
-// Importación de tu gestor de escenas (asegúrate de crearlo en tu paquete util)
-// import ni.edu.uam.solicitudes.util.SceneManager;
 
 public class LoginController {
 
@@ -28,7 +26,6 @@ public class LoginController {
     @FXML
     private Button btnSalir;
 
-    // --- Manejo de Eventos ActionEvent ---
     @FXML
     public void handleLogin(ActionEvent event) {
         iniciarSesion();
@@ -39,7 +36,7 @@ public class LoginController {
         confirmarSalida();
     }
 
-    // --- Manejo de Eventos KeyEvent (Requerimiento extra cumplido) ---
+
     @FXML
     public void handleKeyEvent(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
@@ -49,13 +46,13 @@ public class LoginController {
         }
     }
 
-    // --- Lógica Principal ---
+
     private void iniciarSesion() {
         String usuario = txtUsuario.getText().trim();
         String password = txtPassword.getText().trim();
 
         try {
-            // 1. Validar que los campos no estén vacíos (Requerimiento)
+
             if (usuario.isEmpty() || password.isEmpty()) {
                 mostrarAlerta(Alert.AlertType.WARNING, "Campos incompletos", "El usuario y la contraseña no pueden estar vacíos. Por favor, complete ambos campos.");
             }
