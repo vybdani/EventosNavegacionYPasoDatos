@@ -56,23 +56,21 @@ public class LoginController {
             if (usuario.isEmpty() || password.isEmpty()) {
                 mostrarAlerta(Alert.AlertType.WARNING, "Campos incompletos", "El usuario y la contraseña no pueden estar vacíos. Por favor, complete ambos campos.");
             }
-            // 2. Validar que las credenciales sean correctas ("admin" y "admin")
+
             else if (usuario.equals("admin") && password.equals("admin")) {
                 mostrarAlerta(Alert.AlertType.INFORMATION, "Acceso concedido", "¡Bienvenido al sistema de solicitudes!");
 
                 System.out.println("Credenciales válidas. Abriendo la Ventana Principal...");
 
-                // 3. Abrir la ventana principal mediante el utilitario de navegación
-                // Descomenta la siguiente línea cuando tengas tu SceneManager listo
-                // SceneManager.getInstance().switchScene("menu-principal.fxml");
+
             }
-            // Manejo de credenciales incorrectas
+
             else {
                 mostrarAlerta(Alert.AlertType.ERROR, "Credenciales incorrectas", "El usuario o la contraseña son inválidos. Intente nuevamente.");
             }
 
         } catch (Exception e) {
-            // Protección contra errores en tiempo de ejecución (Ej. error al cargar el FXML)
+
             mostrarAlerta(Alert.AlertType.ERROR, "Error crítico", "Ocurrió un error al intentar iniciar sesión: " + e.getMessage());
             e.printStackTrace();
         }
@@ -80,7 +78,7 @@ public class LoginController {
 
     private void confirmarSalida() {
         try {
-            // 4. Solicitar confirmación mediante un Alert antes de cerrar (Requerimiento)
+
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmar Salida");
             alert.setHeaderText(null);
@@ -95,7 +93,7 @@ public class LoginController {
         }
     }
 
-    // --- Método Auxiliar ---
+
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String contenido) {
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
