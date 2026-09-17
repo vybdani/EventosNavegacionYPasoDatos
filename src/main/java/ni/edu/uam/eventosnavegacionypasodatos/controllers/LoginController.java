@@ -2,6 +2,9 @@ package ni.edu.uam.eventosnavegacionypasodatos.controllers;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -9,6 +12,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
+import ni.edu.uam.eventosnavegacionypasodatos.Launcher;
+import java.io.IOException;
 import java.util.Optional;
 
 
@@ -59,10 +65,7 @@ public class LoginController {
 
             else if (usuario.equals("admin") && password.equals("admin")) {
                 mostrarAlerta(Alert.AlertType.INFORMATION, "Acceso concedido", "¡Bienvenido al sistema de solicitudes!");
-
-                System.out.println("Credenciales válidas. Abriendo la Ventana Principal...");
-
-
+                abrirVentanaPrincipal();
             }
 
             else {
@@ -73,6 +76,18 @@ public class LoginController {
 
             mostrarAlerta(Alert.AlertType.ERROR, "Error crítico", "Ocurrió un error al intentar iniciar sesión: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    private void abrirVentanaPrincipal() {
+        try {
+            FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("menu-principal.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnLogin.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Menú Principal");
+        } catch (IOException e) {
+            mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo abrir la ventana principal: " + e.getMessage());
         }
     }
 
