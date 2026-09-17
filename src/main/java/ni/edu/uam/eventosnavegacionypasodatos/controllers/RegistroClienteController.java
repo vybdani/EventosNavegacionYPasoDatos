@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import ni.edu.uam.eventosnavegacionypasodatos.model.Cliente;
 
 import java.io.File;
+import java.util.List;
 
 public class RegistroClienteController {
     @FXML private TextField txtNombre;
@@ -24,8 +25,7 @@ public class RegistroClienteController {
     @FXML private RadioButton rbSoporte;
     @FXML private RadioButton rbVentas;
     @FXML private ToggleGroup tgTipoSolicitud;
-    @FXML private CheckBox chkMantenimiento;
-    @FXML private CheckBox chkInstalacion;
+    @FXML private ListView<String> lstServicios;
 
 
     @FXML private ImageView imgFotografia;
@@ -46,6 +46,10 @@ public class RegistroClienteController {
         tgTipoSolicitud = new ToggleGroup();
         rbSoporte.setToggleGroup(tgTipoSolicitud);
         rbVentas.setToggleGroup(tgTipoSolicitud);
+
+        lstServicios.setItems(FXCollections.observableArrayList(
+                "Mantenimiento", "Instalación", "Soporte Técnico", "Consultoría"));
+        lstServicios.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     @FXML
@@ -80,6 +84,7 @@ public class RegistroClienteController {
         }
 
         String tipoSolicitud = tgTipoSolicitud.getSelectedToggle() == rbSoporte ? "Soporte" : "Ventas";
+        List<String> servicios = lstServicios.getSelectionModel().getSelectedItems();
 
         Cliente cliente = new Cliente(
                 txtNombre.getText().trim(),
@@ -88,8 +93,8 @@ public class RegistroClienteController {
                 cmbCiudad.getValue(),
                 dpFechaNacimiento.getValue(),
                 tipoSolicitud,
-                chkMantenimiento.isSelected(),
-                chkInstalacion.isSelected(),
+                servicios.contains("Mantenimiento"),
+                servicios.contains("Instalación"),
                 fotoSeleccionada
         );
         Cliente.LISTA_CLIENTES.add(cliente);
@@ -116,8 +121,7 @@ public class RegistroClienteController {
         cmbCiudad.setValue(null);
         dpFechaNacimiento.setValue(null);
         tgTipoSolicitud.selectToggle(null);
-        chkMantenimiento.setSelected(false);
-        chkInstalacion.setSelected(false);
+        lstServicios.getSelectionModel().clearSelection();
         imgFotografia.setImage(null);
         fotoSeleccionada = null;
     }
