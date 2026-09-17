@@ -2,14 +2,19 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.edu.uam.eventosnavegacionypasodatos.controllers.RegistroClienteController">
+<VBox alignment="TOP_CENTER" spacing="20.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.edu.uam.eventosnavegacionypasodatos.controllers.RegistroClienteController">
     <padding>
         <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
     </padding>
@@ -18,37 +23,60 @@
             <font>
                 <Font name="System Bold" size="20.0" />
             </font>
-            <VBox.margin>
-                <Insets bottom="10.0" />
-            </VBox.margin>
         </Label>
 
-        <!-- Formulario usando GridPane -->
-        <GridPane hgap="15.0" vgap="15.0">
+        <HBox spacing="30.0">
             <children>
-                <Label text="Nombres:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <TextField fx:id="txtNombre" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <GridPane hgap="15.0" vgap="15.0">
+                    <children>
+                        <Label text="Nombres:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField fx:id="txtNombre" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <Label text="Apellidos:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <TextField fx:id="txtApellido" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Apellidos:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtApellido" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                <Label text="Correo:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                <TextField fx:id="txtCorreo" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Tipo de cliente:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="cmbTipoCliente" prefWidth="200.0" promptText="Seleccione..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-                <Label text="Teléfono:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                <TextField fx:id="txtTelefono" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="Ciudad:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="cmbCiudad" prefWidth="200.0" promptText="Seleccione..." GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                        <Label text="Fecha de nacimiento:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <DatePicker fx:id="dpFechaNacimiento" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                        <Label text="Tipo de solicitud:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                        <HBox spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                            <children>
+                                <RadioButton fx:id="rbSoporte" text="Soporte" />
+                                <RadioButton fx:id="rbVentas" text="Ventas" />
+                            </children>
+                        </HBox>
+
+                        <Label text="Servicios de interés:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                        <HBox spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                            <children>
+                                <CheckBox fx:id="chkMantenimiento" text="Mantenimiento" />
+                                <CheckBox fx:id="chkInstalacion" text="Instalación" />
+                            </children>
+                        </HBox>
+                    </children>
+                </GridPane>
+
+                <VBox alignment="TOP_CENTER" spacing="10.0">
+                    <children>
+                        <ImageView fx:id="imgFotografia" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #e9ecef;" />
+                        <Button fx:id="btnSeleccionarFoto" mnemonicParsing="false" onAction="#handleSeleccionarFoto" text="Seleccionar Foto" />
+                    </children>
+                </VBox>
             </children>
-        </GridPane>
+        </HBox>
 
-        <!-- Botones de Acción -->
         <HBox alignment="CENTER" spacing="20.0">
             <children>
                 <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#handleGuardar" prefWidth="100.0" style="-fx-background-color: #28a745; -fx-text-fill: white;" text="Guardar" />
+                <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#handleLimpiar" prefWidth="100.0" style="-fx-background-color: #ffc107;" text="Limpiar" />
                 <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#handleCancelar" prefWidth="100.0" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Cancelar" />
             </children>
-            <VBox.margin>
-                <Insets top="15.0" />
-            </VBox.margin>
         </HBox>
     </children>
 </VBox>
