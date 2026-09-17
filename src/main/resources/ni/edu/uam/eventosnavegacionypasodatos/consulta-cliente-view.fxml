@@ -28,7 +28,7 @@
             </children>
         </HBox>
 
-        <TableView fx:id="tblClientes" prefHeight="250.0" prefWidth="620.0">
+        <TableView fx:id="tblClientes" onMouseClicked="#handleClickTabla" prefHeight="250.0" prefWidth="620.0">
             <columns>
                 <TableColumn fx:id="colNombreCompleto" text="Nombre completo" prefWidth="160.0" />
                 <TableColumn fx:id="colTipoCliente" text="Tipo de cliente" prefWidth="120.0" />
