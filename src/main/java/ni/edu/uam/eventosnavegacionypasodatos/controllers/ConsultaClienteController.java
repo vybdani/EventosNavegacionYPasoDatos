@@ -11,24 +11,30 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ni.edu.uam.eventosnavegacionypasodatos.model.Cliente;
 
+import java.time.format.DateTimeFormatter;
+
 public class ConsultaClienteController {
+
+    private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @FXML private TextField txtBuscar;
     @FXML private TableView<Cliente> tblClientes;
-    @FXML private TableColumn<Cliente, String> colNombre;
-    @FXML private TableColumn<Cliente, String> colApellido;
-    @FXML private TableColumn<Cliente, String> colCorreo;
-    @FXML private TableColumn<Cliente, String> colTelefono;
+    @FXML private TableColumn<Cliente, String> colNombreCompleto;
+    @FXML private TableColumn<Cliente, String> colTipoCliente;
+    @FXML private TableColumn<Cliente, String> colCiudad;
+    @FXML private TableColumn<Cliente, String> colFechaNacimiento;
+    @FXML private TableColumn<Cliente, String> colTipoSolicitud;
     @FXML private Button btnCerrar;
 
     private FilteredList<Cliente> clientesFiltrados;
 
     @FXML
     public void initialize() {
-        colNombre.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNombre()));
-        colApellido.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getApellido()));
-        colCorreo.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCorreo()));
-        colTelefono.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTelefono()));
+        colNombreCompleto.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNombreCompleto()));
+        colTipoCliente.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTipoCliente()));
+        colCiudad.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getCiudad()));
+        colFechaNacimiento.setCellValueFactory(data -> new SimpleStringProperty(formatearFecha(data.getValue())));
+        colTipoSolicitud.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTipoSolicitud()));
 
         clientesFiltrados = new FilteredList<>(Cliente.LISTA_CLIENTES, cliente -> true);
         tblClientes.setItems(clientesFiltrados);
@@ -41,6 +47,10 @@ public class ConsultaClienteController {
                             || contiene(cliente.getApellido(), filtro)
             );
         });
+    }
+
+    private String formatearFecha(Cliente cliente) {
+        return cliente.getFechaNacimiento() == null ? "" : cliente.getFechaNacimiento().format(FORMATO_FECHA);
     }
 
     private boolean contiene(String valor, String filtro) {

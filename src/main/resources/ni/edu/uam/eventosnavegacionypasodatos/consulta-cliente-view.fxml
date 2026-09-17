@@ -28,12 +28,13 @@
             </children>
         </HBox>
 
-        <TableView fx:id="tblClientes" prefHeight="250.0" prefWidth="520.0">
+        <TableView fx:id="tblClientes" prefHeight="250.0" prefWidth="620.0">
             <columns>
-                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="130.0" />
-                <TableColumn fx:id="colApellido" text="Apellido" prefWidth="130.0" />
-                <TableColumn fx:id="colCorreo" text="Correo" prefWidth="150.0" />
-                <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="110.0" />
+                <TableColumn fx:id="colNombreCompleto" text="Nombre completo" prefWidth="160.0" />
+                <TableColumn fx:id="colTipoCliente" text="Tipo de cliente" prefWidth="120.0" />
+                <TableColumn fx:id="colCiudad" text="Ciudad" prefWidth="100.0" />
+                <TableColumn fx:id="colFechaNacimiento" text="Fecha de nacimiento" prefWidth="130.0" />
+                <TableColumn fx:id="colTipoSolicitud" text="Tipo de solicitud" prefWidth="110.0" />
             </columns>
         </TableView>
 

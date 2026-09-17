@@ -11,8 +11,6 @@ public class Cliente {
 
     private String nombre;
     private String apellido;
-    private String correo;
-    private String telefono;
 
     private String tipoCliente;
     private String ciudad;
@@ -23,13 +21,6 @@ public class Cliente {
     private String fotoPath;
 
     public Cliente() {
-    }
-
-    public Cliente(String nombre, String apellido, String correo, String telefono) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.correo = correo;
-        this.telefono = telefono;
     }
 
     public Cliente(String nombre, String apellido, String tipoCliente, String ciudad,
@@ -64,22 +55,6 @@ public class Cliente {
 
     public String getNombreCompleto() {
         return nombre + " " + apellido;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
     }
 
     public String getTipoCliente() {
