@@ -51,6 +51,9 @@ public class RegistroClienteController {
                 "Mantenimiento", "Instalación", "Soporte Técnico", "Consultoría"));
         lstServicios.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
+        // Establece la fecha por defecto en 2010 para que el calendario abra directo en ese año
+        dpFechaNacimiento.setValue(LocalDate.of(2010, 1, 1));
+
         dpFechaNacimiento.setDayCellFactory(picker -> new DateCell() {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
@@ -136,7 +139,7 @@ public class RegistroClienteController {
         txtApellido.clear();
         cmbTipoCliente.setValue(null);
         cmbCiudad.setValue(null);
-        dpFechaNacimiento.setValue(null);
+        dpFechaNacimiento.setValue(LocalDate.of(2010, 1, 1));
         tgTipoSolicitud.selectToggle(null);
         lstServicios.getSelectionModel().clearSelection();
         imgFotografia.setImage(null);
