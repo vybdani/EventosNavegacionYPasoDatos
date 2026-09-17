@@ -83,7 +83,8 @@ public class MenuPrincipalController {
             stage.setTitle(titulo);
             stage.initOwner(lblTotalClientes.getScene().getWindow());
             stage.setScene(new Scene(root));
-            stage.show();
+            stage.showAndWait();
+            actualizarConteo();
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "No se pudo abrir la ventana: " + e.getMessage());
             alert.showAndWait();
