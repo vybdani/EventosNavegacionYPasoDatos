@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ni.edu.uam.eventosnavegacionypasodatos.controllers.RegistroClienteController"
-            prefHeight="400.0" prefWidth="600.0">
+<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.edu.uam.eventosnavegacionypasodatos.controllers.RegistroClienteController">
+    <padding>
+        <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+    </padding>
+    <children>
+        <Label text="Registro de Cliente">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+            <VBox.margin>
+                <Insets bottom="10.0" />
+            </VBox.margin>
+        </Label>
 
-</AnchorPane>
+        <!-- Formulario usando GridPane -->
+        <GridPane hgap="15.0" vgap="15.0">
+            <children>
+                <Label text="Nombres:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="txtNombre" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                <Label text="Apellidos:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="txtApellido" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                <Label text="Correo:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="txtCorreo" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                <Label text="Teléfono:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <TextField fx:id="txtTelefono" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            </children>
+        </GridPane>
+
+        <!-- Botones de Acción -->
+        <HBox alignment="CENTER" spacing="20.0">
+            <children>
+                <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#handleGuardar" prefWidth="100.0" style="-fx-background-color: #28a745; -fx-text-fill: white;" text="Guardar" />
+                <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#handleCancelar" prefWidth="100.0" style="-fx-background-color: #dc3545; -fx-text-fill: white;" text="Cancelar" />
+            </children>
+            <VBox.margin>
+                <Insets top="15.0" />
+            </VBox.margin>
+        </HBox>
+    </children>
+</VBox>
