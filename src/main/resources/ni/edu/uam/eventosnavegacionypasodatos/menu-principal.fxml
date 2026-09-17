@@ -9,6 +9,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -22,12 +24,12 @@
                     <menus>
                         <Menu text="Archivo">
                             <items>
-                                <MenuItem text="Registrar Cliente" onAction="#handleAbrirRegistro" />
-                                <MenuItem text="Consultar Clientes" onAction="#handleAbrirConsulta" />
+                                <MenuItem onAction="#handleAbrirRegistro" text="Registrar Cliente" />
+                                <MenuItem onAction="#handleAbrirConsulta" text="Consultar Clientes" />
                                 <SeparatorMenuItem />
-                                <MenuItem text="Exportar Respaldo..." onAction="#handleExportarRespaldo" />
+                                <MenuItem onAction="#handleExportarRespaldo" text="Exportar Respaldo..." />
                                 <SeparatorMenuItem />
-                                <MenuItem text="Salir" onAction="#handleSalir" />
+                                <MenuItem onAction="#handleSalir" text="Salir" />
                             </items>
                         </Menu>
                     </menus>
@@ -47,6 +49,11 @@
                 <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
             </padding>
             <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@logo.png" />
+               </image>
+            </ImageView>
                 <Label text="Sistema de Solicitudes">
                     <font>
                         <Font name="System Bold" size="22.0" />
@@ -64,7 +71,7 @@
                     <contextMenu>
                         <ContextMenu>
                             <items>
-                                <MenuItem text="Actualizar contador" onAction="#handleActualizarConteo" />
+                                <MenuItem onAction="#handleActualizarConteo" text="Actualizar contador" />
                             </items>
                         </ContextMenu>
                     </contextMenu>
