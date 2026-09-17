@@ -25,6 +25,8 @@
                                 <MenuItem text="Registrar Cliente" onAction="#handleAbrirRegistro" />
                                 <MenuItem text="Consultar Clientes" onAction="#handleAbrirConsulta" />
                                 <SeparatorMenuItem />
+                                <MenuItem text="Exportar Respaldo..." onAction="#handleExportarRespaldo" />
+                                <SeparatorMenuItem />
                                 <MenuItem text="Salir" onAction="#handleSalir" />
                             </items>
                         </Menu>
