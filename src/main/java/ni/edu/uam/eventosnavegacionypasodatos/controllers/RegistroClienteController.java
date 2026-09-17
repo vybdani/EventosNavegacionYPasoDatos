@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import ni.edu.uam.eventosnavegacionypasodatos.model.Cliente;
 
 import java.io.File;
 
@@ -34,6 +35,8 @@ public class RegistroClienteController {
     @FXML private Button btnLimpiar;
     @FXML private Button btnCancelar;
 
+    private String fotoSeleccionada;
+
     @FXML
     public void initialize() {
 
@@ -59,6 +62,7 @@ public class RegistroClienteController {
         if (file != null) {
             Image image = new Image(file.toURI().toString());
             imgFotografia.setImage(image);
+            fotoSeleccionada = file.getAbsolutePath();
         }
     }
 
@@ -74,7 +78,23 @@ public class RegistroClienteController {
             mostrarAlerta(Alert.AlertType.WARNING, "Campos Incompletos", "Por favor completa todos los campos obligatorios del formulario.");
             return;
         }
-        mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Cliente registrado correctamente. Listo para enviar a la tabla de consultas.");
+
+        String tipoSolicitud = tgTipoSolicitud.getSelectedToggle() == rbSoporte ? "Soporte" : "Ventas";
+
+        Cliente cliente = new Cliente(
+                txtNombre.getText().trim(),
+                txtApellido.getText().trim(),
+                cmbTipoCliente.getValue(),
+                cmbCiudad.getValue(),
+                dpFechaNacimiento.getValue(),
+                tipoSolicitud,
+                chkMantenimiento.isSelected(),
+                chkInstalacion.isSelected(),
+                fotoSeleccionada
+        );
+        Cliente.LISTA_CLIENTES.add(cliente);
+
+        mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "Cliente registrado correctamente.");
 
         limpiarFormulario();
     }
@@ -99,6 +119,7 @@ public class RegistroClienteController {
         chkMantenimiento.setSelected(false);
         chkInstalacion.setSelected(false);
         imgFotografia.setImage(null);
+        fotoSeleccionada = null;
     }
     private void cerrarVentana() {
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
