@@ -68,7 +68,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                ni.edu.uam.eventosnavegacionypasodatos/ni.edu.uam.eventosnavegacionypasodatos.HelloApplication
+                                ni.edu.uam.eventosnavegacionypasodatos/ni.edu.uam.eventosnavegacionypasodatos.Launcher
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
