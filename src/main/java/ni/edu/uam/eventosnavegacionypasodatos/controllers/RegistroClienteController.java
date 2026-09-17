@@ -100,4 +100,16 @@ public class RegistroClienteController {
         chkInstalacion.setSelected(false);
         imgFotografia.setImage(null);
     }
+    private void cerrarVentana() {
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
+    }
 
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+}
