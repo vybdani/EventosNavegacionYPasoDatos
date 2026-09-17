@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import ni.edu.uam.eventosnavegacionypasodatos.model.Cliente;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.List;
 
 public class RegistroClienteController {
@@ -21,12 +22,10 @@ public class RegistroClienteController {
     @FXML private ComboBox<String> cmbCiudad;
     @FXML private DatePicker dpFechaNacimiento;
 
-
     @FXML private RadioButton rbSoporte;
     @FXML private RadioButton rbVentas;
     @FXML private ToggleGroup tgTipoSolicitud;
     @FXML private ListView<String> lstServicios;
-
 
     @FXML private ImageView imgFotografia;
 
@@ -39,17 +38,29 @@ public class RegistroClienteController {
 
     @FXML
     public void initialize() {
-
         cmbTipoCliente.setItems(FXCollections.observableArrayList("Persona Natural", "Empresa"));
         cmbCiudad.setItems(FXCollections.observableArrayList("Managua", "León", "Granada", "Masaya"));
 
-        tgTipoSolicitud = new ToggleGroup();
-        rbSoporte.setToggleGroup(tgTipoSolicitud);
-        rbVentas.setToggleGroup(tgTipoSolicitud);
+        if (tgTipoSolicitud == null) {
+            tgTipoSolicitud = new ToggleGroup();
+            rbSoporte.setToggleGroup(tgTipoSolicitud);
+            rbVentas.setToggleGroup(tgTipoSolicitud);
+        }
 
         lstServicios.setItems(FXCollections.observableArrayList(
                 "Mantenimiento", "Instalación", "Soporte Técnico", "Consultoría"));
         lstServicios.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        dpFechaNacimiento.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                if (date != null && (date.getYear() < 1940 || date.getYear() > 2010)) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc4c4;");
+                }
+            }
+        });
     }
 
     @FXML
@@ -80,6 +91,12 @@ public class RegistroClienteController {
                 tgTipoSolicitud.getSelectedToggle() == null) {
 
             mostrarAlerta(Alert.AlertType.WARNING, "Campos Incompletos", "Por favor completa todos los campos obligatorios del formulario.");
+            return;
+        }
+
+        LocalDate fecha = dpFechaNacimiento.getValue();
+        if (fecha.getYear() < 1940 || fecha.getYear() > 2010) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Fecha Inválida", "La fecha de nacimiento debe estar entre los años 1940 y 2010.");
             return;
         }
 
@@ -125,6 +142,7 @@ public class RegistroClienteController {
         imgFotografia.setImage(null);
         fotoSeleccionada = null;
     }
+
     private void cerrarVentana() {
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
